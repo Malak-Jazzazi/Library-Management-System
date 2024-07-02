@@ -27,16 +27,22 @@ public class Library {
         books.add(book);
     }
 
-    public void removeBook(Book book){
-        books.remove(book);
+    public void removeBook(Book book) throws BookNotFoundException {
+        Boolean isRemoved = books.remove(book);
+        if(!isRemoved){
+            throw new BookNotFoundException("Book " + book.getTitle() + "is not found");
+        }
     }
 
     public void registerMember(Member member){
         members.add(member);
     }
 
-    public void unregisterMember(Member member){
-        members.remove(member);
+    public void unregisterMember(Member member) throws BookNotFoundException {
+        boolean isRemoved  = members.remove(member);
+        if(!isRemoved){
+            throw new BookNotFoundException("Member " + member.getName() + "is not found");
+        }
     }
 
     public Book findBookByTitle(String title) throws BookNotFoundException {
