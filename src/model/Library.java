@@ -1,9 +1,13 @@
-package src;
+package src.model;
+
+import src.exception.BookAlreadyBorrowedException;
+import src.exception.BookNotBorrowedException;
+import src.exception.BookNotFoundException;
+import src.exception.MemberNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 public class Library {
 
@@ -25,23 +29,32 @@ public class Library {
 
     public void addBook(Book book){
         books.add(book);
+        System.out.println("Book " + book.getTitle() + " Was added to the library Successfully");
     }
 
     public void removeBook(Book book) throws BookNotFoundException {
-        Boolean isRemoved = books.remove(book);
-        if(!isRemoved){
-            throw new BookNotFoundException("Book " + book.getTitle() + "is not found");
+        boolean isRemoved = false;
+        if(!book.getIsBorrowed()){
+            isRemoved = books.remove(book);
+        }else{
+            System.out.println("Book " + book.getTitle() +" Can't be removed because it is already borrowed");
+        }
+        if(!isRemoved && !book.getIsBorrowed()){
+            throw new BookNotFoundException("Book " + book.getTitle() + " is not found");
         }
     }
 
     public void registerMember(Member member){
         members.add(member);
+        System.out.println("Member " + member.getName() + " Was registered to the library Successfully");
     }
 
     public void unregisterMember(Member member) throws BookNotFoundException {
         boolean isRemoved  = members.remove(member);
         if(!isRemoved){
             throw new BookNotFoundException("Member " + member.getName() + "is not found");
+        }else{
+            System.out.println("Member " + member.getName() + " Was unregistered the library Successfully");
         }
     }
 

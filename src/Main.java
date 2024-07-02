@@ -1,6 +1,11 @@
 package src;
 
-import java.io.IOException;
+import src.exception.BookAlreadyBorrowedException;
+import src.exception.BookNotFoundException;
+import src.exception.MemberNotFoundException;
+import src.model.Book;
+import src.model.Library;
+import src.model.Member;
 
 public class Main {
     public static void main(String[] args) throws BookAlreadyBorrowedException, BookNotFoundException, MemberNotFoundException {
@@ -19,8 +24,19 @@ public class Main {
         library.registerMember(member1);
         library.registerMember(member2);
 
-        library.borrowBook(1 ,1);
-        library.borrowBook(1 ,2);
-        library.borrowBook(2 ,2);
+        try {
+            library.borrowBook(1 ,1);
+            library.borrowBook(1 ,2);
+            library.borrowBook(2 ,2);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            library.removeBook(book1);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
     }
 }

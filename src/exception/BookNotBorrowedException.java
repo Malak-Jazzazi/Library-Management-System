@@ -1,4 +1,4 @@
-package src;
+package src.exception;
 
 public class BookNotBorrowedException extends Exception{
     public BookNotBorrowedException(String message) {

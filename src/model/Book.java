@@ -1,4 +1,4 @@
-package src;
+package src.model;
 
 public class Book extends LibraryItem implements Borrowable{
     private final int id;

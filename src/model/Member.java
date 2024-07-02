@@ -1,4 +1,7 @@
-package src;
+package src.model;
+
+import src.exception.BookAlreadyBorrowedException;
+import src.exception.BookNotBorrowedException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +37,7 @@ public class Member {
 
     public void borrowBook(Book book) throws BookAlreadyBorrowedException {
         if(book.getIsBorrowed()){
-            throw new BookAlreadyBorrowedException("Book is already Borrowed");
+            throw new BookAlreadyBorrowedException("Book " + book.getTitle() + " is already Borrowed");
         }
         book.borrow();
         borrowedBooks.add(book);

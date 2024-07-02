@@ -1,4 +1,4 @@
-package src;
+package src.exception;
 
 public class MemberNotFoundException extends Exception{
     public MemberNotFoundException(String message) {
